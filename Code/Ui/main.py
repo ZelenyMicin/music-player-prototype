@@ -1,6 +1,18 @@
 import tkinter as tk
+from tkinter import tkk
 
-root = tk.Tk()
-root.title("My First App")
-root.geometry("400x300")  # Width x Height
-root.mainloop()
+class App(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Music Player")
+        self.resizable(False, False)
+        self._build_ui_()
+
+
+def _build_ui_(self)
+    f = ttk.Frame(self, padding=20)
+    ttk.label(f, text="goon")
+
+
+
+App().mainloop()
