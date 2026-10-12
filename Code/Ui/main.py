@@ -11,7 +11,8 @@ class App(tk.Tk):
 
 def _build_ui_(self)
     f = ttk.Frame(self, padding=20)
-    ttk.label(f, text="goon")
+    ttk.label(f, text="goon", fg="white", bg="navy")
+   
 
 
 
