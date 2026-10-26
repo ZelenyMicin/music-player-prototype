@@ -34,11 +34,11 @@ class App(tk.Tk):
         )
         self.song_label.pack(pady=10)
 
-        ttk.Button(f, text="chosse song", command=self.choose_song).pack(fill="x", pady=2)
+        ttk.Button(f, text="choose a song", command=self.choose_song).pack(fill="x", pady=2)
         ttk.Button(f, text="Play", command=self.play).pack(fill="x", pady=2)
         ttk.Button(f, text="Pause", command=self.pause).pack(fill="x", pady=2)
         ttk.Button(f, text="Resume", command=self.resume).pack(fill="x", pady=2)
-        ttk.Button(f, text="End", command=self.end).pack(fill="x", pady=2)
+        ttk.Button(f, text="Stop", command=self.end).pack(fill="x", pady=2)
 
         tk.Label(f, text="Volume").pack(pady=(10, 0))
         self.volume = ttk.Scale(
