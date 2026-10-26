@@ -22,6 +22,7 @@ class App(tk.Tk):
         self.resizable(False, False)
         self.song_path = None
         pygame.mixer.init()
+        pygame.mixer.music.set_volume(0.5)
         self._build_ui_()
 
     def _build_ui_(self):
@@ -33,11 +34,18 @@ class App(tk.Tk):
         )
         self.song_label.pack(pady=10)
 
-        ttk.Button(f, text="Choose Good Songs", command=self.choose_song).pack(fill="x", pady=2)
-        ttk.Button(f, text="Play the fricking song", command=self.play).pack(fill="x", pady=2)
-        ttk.Button(f, text="Pause if you dare", command=self.pause).pack(fill="x", pady=2)
-        ttk.Button(f, text="Please resume", command=self.resume).pack(fill="x", pady=2)
+        ttk.Button(f, text="chosse song", command=self.choose_song).pack(fill="x", pady=2)
+        ttk.Button(f, text="Play", command=self.play).pack(fill="x", pady=2)
+        ttk.Button(f, text="Pause", command=self.pause).pack(fill="x", pady=2)
+        ttk.Button(f, text="Resume", command=self.resume).pack(fill="x", pady=2)
         ttk.Button(f, text="End", command=self.end).pack(fill="x", pady=2)
+
+        tk.Label(f, text="Volume").pack(pady=(10, 0))
+        self.volume = ttk.Scale(
+            f, from_=0, to=100, orient="horizontal", command=self.set_volume
+        )
+        self.volume.set(50)
+        self.volume.pack(fill="x")
 
     def choose_song(self):
         path = filedialog.askopenfilename(
@@ -45,7 +53,7 @@ class App(tk.Tk):
         )
         if path:
             self.song_path = path
-            self.song_label.config(text=path.split("/")[-1])
+            self.song_label.config(text=path.split("/")[-1].split("\\")[-1])
 
     def play(self):
         if self.song_path:
@@ -60,5 +68,8 @@ class App(tk.Tk):
 
     def end(self):
         pygame.mixer.music.stop()
+
+    def set_volume(self, value):
+        pygame.mixer.music.set_volume(float(value) / 100)
 
 App().mainloop()
